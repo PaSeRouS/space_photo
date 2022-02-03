@@ -1,8 +1,11 @@
 import datetime
 import os
+import time
+from os import listdir
 from os.path import split, splitext
 
 import requests
+import telegram
 from dotenv import load_dotenv
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -80,12 +83,40 @@ def fetch_epic_photos(token):
         upload_picture(url, filename)
 
 
+def public_photo_on_telegram():
+    telegram_token = os.getenv("TELEGRAM_TOKEN")
+    publication_delay = os.getenv('PUBLICATION_DELAY')
+
+    photos_spacex_for_telegram = listdir("images")
+    photos_nasa_for_telegram = listdir("nasa_photo")
+    photos_epic_for_telegram = listdir("epic_photo")
+  
+    bot = telegram.Bot(token=telegram_token)
+
+    while True:
+        for photo in photos_spacex_for_telegram:
+            time.sleep(int(publication_delay))
+            filepath = f'images/{photo}'
+            bot.sendPhoto(chat_id="@paser_space_photo", photo=open(filepath, 'rb'))
+
+        for photo in photos_nasa_for_telegram:
+            time.sleep(int(publication_delay))
+            filepath = f'nasa_photo/{photo}'
+            bot.sendPhoto(chat_id="@paser_space_photo", photo=open(filepath, 'rb'))
+
+        for photo in photos_epic_for_telegram:
+            time.sleep(int(publication_delay))
+            filepath = f'epic_photo/{photo}'
+            bot.sendPhoto(chat_id="@paser_space_photo", photo=open(filepath, 'rb'))
+
+
 if __name__ == '__main__':
     load_dotenv()
 
-    token = os.getenv('NASA_TOKEN')
+    nasa_token = os.getenv('NASA_TOKEN')
 
     fetch_spacex_last_launch()
-    fetch_nasa_photos(token)
-    fetch_epic_photos(token)
-  
+    fetch_nasa_photos(nasa_token)
+    fetch_epic_photos(nasa_token)
+
+    public_photo_on_telegram()
