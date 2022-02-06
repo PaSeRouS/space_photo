@@ -5,7 +5,7 @@ from os import listdir
 import telegram
 from dotenv import load_dotenv
 
-from fetch_nasa import fetch_nasa
+from fetch_nasa import fetch_nasa_photos, fetch_epic_photos
 from fetch_spacex import fetch_spacex_last_launch
 
 
@@ -17,8 +17,8 @@ def public_photo_on_telegram():
         publication_delay = 86400
 
     photos_spacex_for_telegram = listdir("images")
-    photos_nasa_for_telegram = listdir("nasa_photo")
-    photos_epic_for_telegram = listdir("epic_photo")
+    # photos_nasa_for_telegram = listdir("nasa_photo")
+    # photos_epic_for_telegram = listdir("epic_photo")
   
     bot = telegram.Bot(token=telegram_token)
 
@@ -42,10 +42,10 @@ def public_photo_on_telegram():
 if __name__ == '__main__':
     load_dotenv()
 
-    nasa_token = os>getenv("NASA_TOKEN")
+    nasa_token = os.getenv("NASA_TOKEN")
 
     fetch_spacex_last_launch()
-    fetch_nasa_photos(nasa_token)
-    fetch_epic_photos(nasa_token)
+    # fetch_nasa_photos(nasa_token)
+    # fetch_epic_photos(nasa_token)
 
     public_photo_on_telegram()
