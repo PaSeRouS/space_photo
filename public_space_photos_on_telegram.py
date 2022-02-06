@@ -24,19 +24,19 @@ def public_photo_on_telegram():
 
     while True:
         for photo in photos_spacex_for_telegram:
-            time.sleep(int(publication_delay))
             filepath = f'images/{photo}'
             bot.sendPhoto(chat_id="@paser_space_photo", photo=open(filepath, 'rb'))
+            time.sleep(int(publication_delay))
 
         for photo in photos_nasa_for_telegram:
-            time.sleep(int(publication_delay))
             filepath = f'nasa_photo/{photo}'
             bot.sendPhoto(chat_id="@paser_space_photo", photo=open(filepath, 'rb'))
+            time.sleep(int(publication_delay))
 
         for photo in photos_epic_for_telegram:
-            time.sleep(int(publication_delay))
             filepath = f'epic_photo/{photo}'
             bot.sendPhoto(chat_id="@paser_space_photo", photo=open(filepath, 'rb'))
+            time.sleep(int(publication_delay))
 
 
 if __name__ == '__main__':
