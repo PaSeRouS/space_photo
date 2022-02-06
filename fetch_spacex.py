@@ -13,7 +13,7 @@ def upload_picture(url, filename):
 def fetch_spacex_last_launch():
     Path("images").mkdir(parents=True, exist_ok=True)
 
-    response = requests.get("https://api.spacexdata.com/v3/launches/latest")
+    response = requests.get("https://api.spacexdata.com/v3/launches/45")
     response.raise_for_status()
 
     for url_number, url in enumerate(response.json()["links"]["flickr_images"]):
