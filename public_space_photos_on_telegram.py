@@ -17,8 +17,8 @@ def public_photo_on_telegram():
         publication_delay = 86400
 
     photos_spacex_for_telegram = listdir("images")
-    # photos_nasa_for_telegram = listdir("nasa_photo")
-    # photos_epic_for_telegram = listdir("epic_photo")
+    photos_nasa_for_telegram = listdir("nasa_photo")
+    photos_epic_for_telegram = listdir("epic_photo")
   
     bot = telegram.Bot(token=telegram_token)
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     nasa_token = os.getenv("NASA_TOKEN")
 
     fetch_spacex_last_launch()
-    # fetch_nasa_photos(nasa_token)
-    # fetch_epic_photos(nasa_token)
+    fetch_nasa_photos(nasa_token)
+    fetch_epic_photos(nasa_token)
 
     public_photo_on_telegram()
