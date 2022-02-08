@@ -16,4 +16,4 @@ def fetch_spacex_launch_photos(path):
 
 
 if __name__ == '__main__':
-    fetch_spacex_last_launch()
+    fetch_spacex_launch_photos("images")

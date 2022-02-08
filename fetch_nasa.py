@@ -36,7 +36,7 @@ def fetch_nasa_photos(token, path):
 
 
 def fetch_epic_photos(token, path):
-    Path("epic_photo").mkdir(parents=True, exist_ok=True)
+    Path(path).mkdir(parents=True, exist_ok=True)
 
     epic_url = 'https://api.nasa.gov/EPIC/api/natural/images'
 
@@ -68,5 +68,5 @@ if __name__ == '__main__':
 
     nasa_token = os.getenv('NASA_TOKEN')
 
-    fetch_nasa_photos(nasa_token)
-    fetch_epic_photos(nasa_token)
+    fetch_nasa_photos(nasa_token, "nasa_photos")
+    fetch_epic_photos(nasa_token, "epic_photos")
