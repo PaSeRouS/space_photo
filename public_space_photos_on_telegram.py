@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     nasa_token = os.getenv("NASA_TOKEN")
     telegram_token = os.getenv("TELEGRAM_TOKEN")
-    publication_delay = os.getenv('PUBLICATION_DELAY')
+    publication_delay = os.getenv('PUBLICATION_DELAY', 86400)
     telegram_channel_name = os.getenv("TELEGRAM_CHANNEL_NAME")
 
     fetch_spacex_launch_photos("images")
@@ -37,6 +37,6 @@ if __name__ == '__main__':
     directories = [ "images", "nasa_photos", "epic_photos"]
     bot = telegram.Bot(token=telegram_token)
 
-    while true:
+    while True:
         for directory in directories:
             send_photos_to_telegram(bot, directory, publication_delay, telegram_channel_name)
